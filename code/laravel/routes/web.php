@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,16 +29,24 @@ Route::post('/posts/store', [PostController::class, 'store'])
     ->name('store.posts');
 
 Route::get('/posts/{id}/edit', [PostController::class, 'edit'])
-->name('edit.posts')
-->where('id','[0-9]+');
+    ->name('edit.posts')
+    ->where('id','[0-9]+');
 
 Route::patch('/posts/{id}/uptade', [PostController::class, 'uptade'])
-->name('uptade.posts')
-->where('id','[0-9]+');
+    ->name('uptade.posts')
+    ->where('id','[0-9]+');
 
 Route::delete('/posts/{id}/destroy', [PostController::class, 'destroy'])
-->name('destroy.posts')
-->where('id','[0-9]+');
+    ->name('destroy.posts')
+    ->where('id','[0-9]+');
 
 Route::get('/posts/search', [PostController::class, 'search'])
     ->name('search.posts');
+
+Route::post('/posts/{id}/comments', [CommentController::class, 'store'])
+    ->name('store.comments')
+    ->where('id','[0-9]+');
+
+Route::delete('/comments/{comment}/destroy', [CommentController::class, 'destroy'])
+->name('destroy.comments')
+->where('comment','[0-9]+');
